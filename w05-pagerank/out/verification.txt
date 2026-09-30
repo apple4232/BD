@@ -1,0 +1,93 @@
+Working directory: C:\Users\user\Documents\Codex\2026-09-30\python-w05-pagerank-week-5-lab\outputs\w05-pagerank
+Python runtime: C:\Users\user\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\python.exe
+
+$ python3 task1_pagerank.py --verify
+  ok    ranks sum to 1                                   1.000000
+  ok    every node ranked                                ['A', 'B', 'C']
+  ok    C outranks A and B                               {'A': 0.3878, 'B': 0.2148, 'C': 0.3974}
+  ok    without the fix, a dead end drains the graph     total rank 0.0000
+  ok    with the fix, rank is conserved                  1.000000
+  ok    without the fix, a spider trap takes everything  C+D = 1.0000
+  ok    with the fix, A and B keep some rank             {'A': 0.0375, 'B': 0.0694, 'C': 0.4625, 'D': 0.4306}
+
+  all ok
+Exit code: 0
+
+$ python3 task2_convergence.py --betas 0.5,0.7,0.85,0.95,0.99
+  beta 0.5      14 iterations    0.007s   top: p00009, p00001, p00006
+  beta 0.7      17 iterations    0.009s   top: p00009, p00001, p00006
+  beta 0.85     20 iterations    0.009s   top: p00009, p00001, p00006
+  beta 0.95     23 iterations    0.012s   top: p00009, p00001, p00006
+  beta 0.99     24 iterations    0.012s   top: p00009, p00001, p00006
+
+  -> out/convergence.json  (17 run(s))
+Exit code: 0
+
+$ python3 bench.py --yours
+
+  1,200 nodes, 5,877 edges, density 0.4081%
+
+  baseline      0.60s   floats held    1,440,000   sum 1.000000
+  yours         0.01s   floats held        3,616   sum 1.000000   worst diff 4.16e-17
+
+   ok    ranks match to 1e-9
+     75.5x faster     398.2x less memory
+
+   -> strong
+
+Exit code: 0
+
+$ python3 test_tasks.py
+
+=== Task 1
+  ok    ranks sum to 1                                   1.000000
+  ok    every node ranked                                ['A', 'B', 'C']
+  ok    C outranks A and B                               {'A': 0.3878, 'B': 0.2148, 'C': 0.3974}
+  ok    without the fix, a dead end drains the graph     total rank 0.0000
+  ok    with the fix, rank is conserved                  1.000000
+  ok    without the fix, a spider trap takes everything  C+D = 1.0000
+  ok    with the fix, A and B keep some rank             {'A': 0.0375, 'B': 0.0694, 'C': 0.4625, 'D': 0.4306}
+
+  all ok
+  ok   [1] all seven checks
+
+=== Task 2
+  ok   [2] A1 five or more betas  - [0.5, 0.7, 0.85, 0.95, 0.99]
+  ok   [2] A4 two or more graph sizes  - [1200, 20000]
+  ok   [2] A5 two or more tolerances  - [1e-10, 1e-06, 0.001]
+  ok   [2] A7 machine recorded
+  ok   [2] out/convergence.md exists
+
+=== Task 3
+  baseline      0.62s   floats held    1,440,000   sum 1.000000
+  yours         0.01s   floats held        3,616   sum 1.000000   worst diff 4.16e-17
+  ok   [3] R3 ranks within 1e-9  - worst 4.16e-17
+  ok   [3] R4 less memory  - 398x
+ skip  [3] R5 teleport argument in observation.md  - graded by a human
+
+  8 passed, 0 failed, 1 skipped
+Exit code: 0
+
+$ python3 ../check.py w05
+== w05-pagerank/out/ ==
+
+  [ok]      convergence.json     runs from task2_convergence.py  (10,139 bytes)
+  [ok]      convergence.md       the iteration curve  (4,552 bytes)
+  [ok]      bench.txt            python3 bench.py --yours  (293 bytes)
+  [ok]      observation.md       2-3 lines per task  (1,900 bytes)
+  [optional]task4.txt            optional task 4 output
+
+  Format check passed. Whether it is right is up to you.
+Exit code: 0
+
+$ python3 ../check.py w05 (after report refresh)
+== w05-pagerank/out/ ==
+
+  [ok]      convergence.json     runs from task2_convergence.py  (10,139 bytes)
+  [ok]      convergence.md       the iteration curve  (4,552 bytes)
+  [ok]      bench.txt            python3 bench.py --yours  (293 bytes)
+  [ok]      observation.md       2-3 lines per task  (1,900 bytes)
+  [optional]task4.txt            optional task 4 output
+
+  Format check passed. Whether it is right is up to you.
+Exit code: 0
